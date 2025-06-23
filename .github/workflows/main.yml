@@ -24,10 +24,10 @@ jobs:
         pip install sphinx
 
     - name: Run data processing
-      run: python script/data_processing.py
+      run: python scripts/data_processing.py
 
     - name: Train model
-      run: python script/model_training.py
+      run: python scripts/model_training.py
 
     - name: Evaluate model
-      run: python script/model_evaluation.py
+      run: python scripts/model_evaluation.py
