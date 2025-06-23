@@ -38,7 +38,17 @@ def analyze_data(df):
     
     return df.describe()
 
+import os
+from script.data_processing import load_data, preprocess_data, analyze_data
+
 if __name__ == "__main__":
-    data = load_data('C:/Users/COMPUTER-STORE/Documents/Environnement/ANN/diamond_ana/data/diamonds.csv')
+    # Obtenir le chemin absolu du fichier actuel (ex: script/mon_script.py)
+    current_dir = os.path.dirname(__file__)
+
+    # Remonter au dossier parent (ex: projet/), puis aller dans data/diamonds.csv
+    data_path = os.path.abspath(os.path.join(current_dir, "..", "data", "diamonds.csv"))
+
+    # Chargement et traitement des données
+    data = load_data(data_path)
     data = preprocess_data(data)
     stats = analyze_data(data)
