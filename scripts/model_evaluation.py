@@ -43,5 +43,19 @@ def evaluate_model(model_path, data_path):
     
     return mse, rmse, r2
 
+import os
+from script.model_evaluation import evaluate_model
+
 if __name__ == "__main__":
-    evaluate_model('C:/Users/COMPUTER-STORE/Documents/Environnement/ANN/diamond_ana/models/diamond_price_predictor.pth', 'C:/Users/COMPUTER-STORE/Documents/Environnement/ANN/diamond_ana/data/diamonds.csv')
+    # Répertoire du script actuel (ex: script/)
+    current_dir = os.path.dirname(__file__)
+
+    # Dossier parent (ex: projet/)
+    parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+
+    # Construction des chemins relatifs
+    model_path = os.path.join(parent_dir, "models", "diamond_price_predictor.pth")
+    data_path = os.path.join(parent_dir, "data", "diamonds.csv")
+
+    # Évaluation du modèle
+    evaluate_model(model_path, data_path)
