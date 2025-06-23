@@ -54,16 +54,24 @@ def train_model(X_train, y_train, input_size, epochs=100, lr=0.001):
     return model
 
 if __name__ == "__main__":
+    # Déterminer le dossier courant et le dossier parent
+    current_dir = os.path.dirname(__file__)
+    parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
+
+    # Construire les chemins relatifs
+    data_path = os.path.join(parent_dir, "data", "diamonds.csv")
+    model_path = os.path.join(parent_dir, "models", "diamond_price_predictor.pth")
+
     # Chargement et prétraitement des données
-    data = load_data('C:/Users/COMPUTER-STORE/Documents/Environnement/ANN/diamond_ana/data/diamonds.csv')
+    data = load_data(data_path)
     data = preprocess_data(data)
-    
+
     # Préparation des données
     X_train, X_test, y_train, y_test = prepare_data(data)
-    
+
     # Entraînement du modèle
     input_size = X_train.shape[1]
     model = train_model(X_train, y_train, input_size)
-    
+
     # Sauvegarde du modèle
-    torch.save(model.state_dict(), 'C:/Users/COMPUTER-STORE/Documents/Environnement/ANN/diamond_ana/models/diamond_price_predictor.pth')
+    torch.save(model.state_dict(), model_path)
